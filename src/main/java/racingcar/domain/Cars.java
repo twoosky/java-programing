@@ -1,17 +1,29 @@
 package racingcar.domain;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static racingcar.utils.ErrorMessage.*;
 
-public class CarName {
+public class Cars {
     public static final String SEPARATOR = ",";
-    public CarName(String names) {
-        validate(names);
+
+    List<Car> cars;
+
+    public Cars(String names) {
+        String[] carNames = names.split(SEPARATOR);
+        validate(carNames);
+        this.cars = initCars(carNames);
     }
 
-    private void validate(String names) {
-        String[] carNames = names.split(SEPARATOR);
+    private List<Car> initCars(String[] carNames) {
+        return Arrays.stream(carNames)
+                .map(Car::new)
+                .collect(Collectors.toList());
+    }
+
+    private void validate(String[] carNames) {
         validateSeparator(carNames);
         validateQuantity(carNames);
         validateDuplicate(carNames);
@@ -35,5 +47,9 @@ public class CarName {
         if (carNameCount != names.length) {
             throw new IllegalArgumentException(DUPLICATED_NAME);
         }
+    }
+
+    public List<Car> getCars() {
+        return cars;
     }
 }
