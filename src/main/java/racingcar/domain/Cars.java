@@ -26,6 +26,7 @@ public class Cars {
     private void validate(String[] carNames) {
         validateSeparator(carNames);
         validateQuantity(carNames);
+        validateNameLength(carNames);
         validateDuplicate(carNames);
     }
 
@@ -37,7 +38,7 @@ public class Cars {
 
     private void validateQuantity(String[] names) {
         if (names.length < 2) {
-            throw new IllegalArgumentException(LESS_THAN_TWO);
+            throw new IllegalArgumentException(LESS_THAN_TWO_CAR_QUANTITY);
         }
     }
 
@@ -45,8 +46,20 @@ public class Cars {
         long carNameCount = Arrays.stream(names)
                 .distinct().count();
         if (carNameCount != names.length) {
-            throw new IllegalArgumentException(DUPLICATED_NAME);
+            throw new IllegalArgumentException(DUPLICATED_NAME_CAR_NAME);
         }
+    }
+
+    private void validateNameLength(String[] names) {
+        if (getCountByGraterThanFive(names) != 0) {
+            throw new IllegalArgumentException(OUT_OF_RANGE_NAME_SIZE);
+        }
+    }
+
+    private int getCountByGraterThanFive(String[] names) {
+        return (int) Arrays.stream(names)
+                .filter(name -> name.length() > 5)
+                .count();
     }
 
     public List<Car> getCars() {
