@@ -2,9 +2,9 @@ package racingcar.utils;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
-public class ProgressRandomNumberGenerator implements ProgressRuleGenerator {
+public class MovingRandomNumberGenerator implements MovingRuleGenerator<Integer> {
     @Override
-    public int generate() {
+    public Integer generate() {
         return Randoms.pickNumberInRange(0, 9);
     }
 }
