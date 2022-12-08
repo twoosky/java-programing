@@ -29,4 +29,11 @@ public class CarName {
         }
     }
 
+    private void validateDuplicate(String[] names) {
+        long carNameCount = Arrays.stream(names)
+                .distinct().count();
+        if (carNameCount != names.length) {
+            throw new IllegalArgumentException(DUPLICATED_NAME);
+        }
+    }
 }
