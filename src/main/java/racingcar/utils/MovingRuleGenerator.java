@@ -1,5 +1,5 @@
 package racingcar.utils;
 
-public interface AdvanceRuleGenerator {
+public interface ProgressRuleGenerator {
     int generate();
 }
