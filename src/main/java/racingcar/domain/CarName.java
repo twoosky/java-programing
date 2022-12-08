@@ -23,4 +23,10 @@ public class CarName {
         }
     }
 
+    private void validateQuantity(String[] names) {
+        if (names.length < 2) {
+            throw new IllegalArgumentException(LESS_THAN_TWO);
+        }
+    }
+
 }
