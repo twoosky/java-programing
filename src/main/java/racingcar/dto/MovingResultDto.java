@@ -5,10 +5,14 @@ import racingcar.domain.Cars;
 
 import java.util.List;
 
-public class GameResultDto {
+public class MovingResultDto {
     private final List<Car> cars;
 
-    public GameResultDto(Cars cars) {
+    public MovingResultDto(Cars cars) {
         this.cars = cars.getCars();
+    }
+
+    public List<Car> getCars() {
+        return cars;
     }
 }
