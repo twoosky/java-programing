@@ -1,12 +1,10 @@
 package racingcar.domain;
 
-import racingcar.utils.MovingRuleGenerator;
-
 public class Moving {
-    private final MovingRuleGenerator<Integer> movingRuleGenerator;
+    private final int number;
 
-    public Moving(MovingRuleGenerator<Integer> movingRuleGenerator) {
-        this.movingRuleGenerator = movingRuleGenerator;
+    public Moving(int number) {
+        this.number = number;
     }
 
     public void move(Cars cars) {
@@ -16,10 +14,6 @@ public class Moving {
     }
 
     private boolean isMove() {
-        return generateRandomNumber() >= 4;
-    }
-
-    private int generateRandomNumber() {
-        return movingRuleGenerator.generate();
+        return number >= 4;
     }
 }
