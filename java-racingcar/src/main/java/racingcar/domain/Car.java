@@ -1,7 +1,5 @@
 package racingcar.domain;
 
-import java.util.Comparator;
-
 public class Car {
     private final String name;
     private int position = 0;

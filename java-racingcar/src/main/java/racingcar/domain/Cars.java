@@ -12,52 +12,58 @@ public class Cars {
     List<Car> cars;
 
     public Cars(String names) {
-        String[] carNames = names.split(SEPARATOR);
-        validate(carNames);
-        this.cars = initCars(carNames);
+        validate(names);
+        this.cars = initCars(names);
     }
 
-    private List<Car> initCars(String[] carNames) {
-        return Arrays.stream(carNames)
+    private List<Car> initCars(String names) {
+        return Arrays.stream(names.split(SEPARATOR))
                 .map(Car::new)
                 .collect(Collectors.toList());
     }
 
-    private void validate(String[] carNames) {
-        validateSeparator(carNames);
-        validateQuantity(carNames);
+    private void validate(String names) {
+        List<String> carNames = splitNames(names);
+        validateSeparator(names);
+        validateCarCount(carNames);
         validateNameLength(carNames);
         validateDuplicate(carNames);
     }
 
-    private void validateSeparator(String[] names) {
-        if (names.length == 0) {
+    private List<String> splitNames(String names) {
+        return Arrays.stream(names.split(SEPARATOR))
+                .filter(name -> name.length() != 0)
+                .collect(Collectors.toList());
+    }
+
+    private void validateSeparator(String names) {
+        if (!names.contains(SEPARATOR)) {
             throw new IllegalArgumentException(INVALID_SEPARATOR);
         }
     }
 
-    private void validateQuantity(String[] names) {
-        if (names.length < 2) {
-            throw new IllegalArgumentException(LESS_THAN_TWO_CAR_QUANTITY);
+    private void validateCarCount(List<String> names) {
+        if (names.size() < 2) {
+            throw new IllegalArgumentException(LESS_THAN_TWO_CAR_COUNT);
         }
     }
 
-    private void validateDuplicate(String[] names) {
-        long carNameCount = Arrays.stream(names)
+    private void validateDuplicate(List<String> names) {
+        long carNameCount = names.stream()
                 .distinct().count();
-        if (carNameCount != names.length) {
+        if (carNameCount != names.size()) {
             throw new IllegalArgumentException(DUPLICATED_NAME_CAR_NAME);
         }
     }
 
-    private void validateNameLength(String[] names) {
+    private void validateNameLength(List<String> names) {
         if (getCountByGraterThanFive(names) != 0) {
             throw new IllegalArgumentException(OUT_OF_RANGE_NAME_SIZE);
         }
     }
 
-    private int getCountByGraterThanFive(String[] names) {
-        return (int) Arrays.stream(names)
+    private int getCountByGraterThanFive(List<String> names) {
+        return (int) names.stream()
                 .filter(name -> name.length() > 5)
                 .count();
     }
