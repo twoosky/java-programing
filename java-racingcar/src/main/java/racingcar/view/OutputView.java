@@ -18,6 +18,7 @@ public class OutputView {
         for (Car car : movingResultDto.getCars()) {
             System.out.println(generateMovingResultMessage(car));
         }
+        System.out.println();
     }
 
     private String generateMovingResultMessage(Car car) {
@@ -31,5 +32,9 @@ public class OutputView {
 
     private String generateWinnerMessage(WinnerDto winnerDto) {
         return format(WINNER_RESULT_FORMAT, String.join(", ", winnerDto.getNames()));
+    }
+
+    public static void printErrorMessage(String message) {
+        System.out.println(message);
     }
 }
