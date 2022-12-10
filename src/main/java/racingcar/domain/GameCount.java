@@ -16,4 +16,8 @@ public class GameCount {
             throw new IllegalArgumentException(NOT_INTEGER_GAME_COUNT);
         }
     }
+
+    public int getCount() {
+        return count;
+    }
 }
