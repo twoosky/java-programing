@@ -8,10 +8,10 @@ public class Winner {
     private final List<Car> winners;
 
     public Winner(Cars cars) {
-        this.winners = getWinners(cars);
+        this.winners = getWinner(cars);
     }
 
-    private List<Car> getWinners(Cars cars) {
+    private List<Car> getWinner(Cars cars) {
         int maxPosition = getMaxPosition(cars);
         return cars.getCars().stream()
                 .filter(car -> car.isWinner(maxPosition))
