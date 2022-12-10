@@ -10,4 +10,8 @@ public class WinnerDto {
     public WinnerDto(Winner winner) {
         this.names = winner.getNames();
     }
+
+    public List<String> getNames() {
+        return names;
+    }
 }
