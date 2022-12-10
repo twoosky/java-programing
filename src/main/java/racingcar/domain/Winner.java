@@ -24,4 +24,10 @@ public class Winner {
                 .max()
                 .orElseThrow(NoSuchElementException::new);
     }
+
+    public List<String> getNames() {
+        return winners.stream()
+                .map(Car::getName)
+                .collect(Collectors.toList());
+    }
 }
