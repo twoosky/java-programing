@@ -1,4 +1,5 @@
 .DS_Store
+.idea
 .gradle
 /build/
 !gradle/wrapper/gradle-wrapper.jar
@@ -15,7 +16,6 @@
 bin/
 
 ### IntelliJ IDEA ###
-.idea
 *.iws
 *.iml
 *.ipr
