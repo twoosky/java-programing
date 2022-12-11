@@ -13,27 +13,27 @@ public class CoinChanger {
         this.coinGenerator = coinGenerator;
     }
 
-    public void generateCoin(Money money) {
-        while (money.hasAmount()) {
-            generateRandomCoin(money);
+    public void generateCoin(VendingMachineAmount amount) {
+        while (amount.hasAmount()) {
+            generateRandomCoin(amount);
         }
     }
 
-    private void generateRandomCoin(Money money) {
-        int amount = coinGenerator.generate(getAmounts(money.get()));
-        money.exchangeCoin(amount);
-        updateCoinCount(amount);
+    private void generateRandomCoin(VendingMachineAmount amount) {
+        int money = coinGenerator.generate(getAmounts(amount));
+        amount.exchangeCoin(money);
+        updateCoinCount(money);
     }
 
     private void updateCoinCount(int amount) {
         Coin coin = Coin.of(amount);
-        coin.updateCoinCount();
+        coin.increaseCoinCount();
     }
 
-    private List<Integer> getAmounts(int money) {
+    private List<Integer> getAmounts(VendingMachineAmount amount) {
         return Arrays.stream(Coin.values())
                 .map(Coin::getAmount)
-                .filter(amount -> amount <= money)
+                .filter(amount::isGreaterThanCoinAmount)
                 .collect(Collectors.toList());
     }
 }
