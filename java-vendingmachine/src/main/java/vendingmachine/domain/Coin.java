@@ -20,13 +20,21 @@ public enum Coin {
 
     public static Coin of(int amount) {
         return Arrays.stream(Coin.values())
-                .filter(coin -> coin.amount == amount)
+                .filter(value -> value.amount == amount)
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(NOT_EXIST_COIN_AMOUNT));
     }
 
-    public void updateCoinCount() {
+    public void increaseCoinCount() {
         this.count++;
+    }
+
+    public void decreaseCount(int count) {
+        this.count -= count;
+    }
+
+    public boolean hasCoin() {
+        return count != 0;
     }
 
     public int getAmount() {
@@ -36,5 +44,4 @@ public enum Coin {
     public int getCount() {
         return count;
     }
-// 추가 기능 구현
 }
