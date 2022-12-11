@@ -7,6 +7,7 @@ public class ErrorMessages {
 
     public static final String INVALID_PRODUCT_SEPARATOR = "[ERROR] 상품은 세미콜론(;)으로 구분되어야 합니다.";
     public static final String INVALID_PRODUCT_INFO_SEPARATOR = "[ERROR] 상품 정보는 쉼표(,)로 구분되어야 합니다.";
+    public static final String INVALID_PRODUCT_INFO = "[ERROR] 잘못된 상품 정보입니다.";
     public static final String NOT_INTEGER_PRODUCT_AMOUNT = "[ERROR] 상품 가격은 숫자만 입력 가능합니다.";
     public static final String OUT_OF_RANGE_PRODUCT_AMOUNT = "[ERROR] 상품 가격은 100 이상이어야 합니다.";
     public static final String INVALID_UNIT_PRODUCT_AMOUNT = "[ERROR] 상품 가격은 10으로 나누어 떨어져야 합니다.";
