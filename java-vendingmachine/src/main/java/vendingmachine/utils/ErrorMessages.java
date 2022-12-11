@@ -1,4 +1,4 @@
-package utils;
+package vendingmachine.utils;
 
 public class ErrorMessages {
     public static final String NOT_INTEGER_MACHINE_MONEY = "[ERROR] 자판기 보유 금액은 숫자만 입력 가능합니다.";
