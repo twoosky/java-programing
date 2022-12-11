@@ -3,40 +3,40 @@ package vendingmachine.domain;
 import static vendingmachine.utils.ErrorMessages.INVALID_UNIT_MACHINE_MONEY;
 import static vendingmachine.utils.ErrorMessages.OUT_OF_RANGE_MACHINE_MONEY;
 
-public class Amount {
-    private int money;
+public class VendingMachineAmount {
+    private int amount;
 
-    public Amount(int money) {
-        validate(money);
-        this.money = money;
+    public VendingMachineAmount(int amount) {
+        validate(amount);
+        this.amount = amount;
     }
 
-    private void validate(int money) {
-        validateRange(money);
-        validateUnit(money);
+    private void validate(int amount) {
+        validateRange(amount);
+        validateUnit(amount);
     }
 
-    private void validateRange(int money) {
-        if (money < 10) {
+    private void validateRange(int amount) {
+        if (amount < 10) {
             throw new IllegalArgumentException(OUT_OF_RANGE_MACHINE_MONEY);
         }
     }
 
-    private void validateUnit(int money) {
-        if ((money % 10) != 0) {
+    private void validateUnit(int amount) {
+        if ((amount % 10) != 0) {
             throw new IllegalArgumentException(INVALID_UNIT_MACHINE_MONEY);
         }
     }
 
     public void exchangeCoin(int amount) {
-        money -= amount;
+        this.amount -= amount;
     }
 
     public boolean hasAmount() {
-        return money > 0;
+        return amount > 0;
     }
 
-    public int get() {
-        return money;
+    public boolean isGreaterThanCoinAmount(int coinAmount) {
+        return coinAmount <= amount;
     }
 }
