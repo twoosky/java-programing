@@ -1,7 +1,14 @@
 package vendingmachine;
 
+import vendingmachine.controller.VendingMachineController;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        try {
+            VendingMachineController vendingMachineController = new VendingMachineController();
+            vendingMachineController.run();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
