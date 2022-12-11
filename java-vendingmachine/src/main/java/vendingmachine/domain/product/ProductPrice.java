@@ -1,12 +1,15 @@
 package vendingmachine.domain.product;
 
-import static vendingmachine.utils.ErrorMessages.INVALID_UNIT_PRODUCT_AMOUNT;
-import static vendingmachine.utils.ErrorMessages.OUT_OF_RANGE_PRODUCT_AMOUNT;
+import vendingmachine.utils.IntegerConvertor;
+
+import static vendingmachine.utils.ErrorMessages.*;
 
 public class ProductAmount {
     private final int amount;
 
-    public ProductAmount(int amount) {
+    public ProductAmount(String input) {
+        int amount = IntegerConvertor.parseInt(input, NOT_INTEGER_PRODUCT_AMOUNT);
+        validate(amount);
         this.amount = amount;
     }
 

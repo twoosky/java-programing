@@ -3,10 +3,10 @@ package vendingmachine.domain;
 import static vendingmachine.utils.ErrorMessages.INVALID_UNIT_MACHINE_MONEY;
 import static vendingmachine.utils.ErrorMessages.OUT_OF_RANGE_MACHINE_MONEY;
 
-public class Money {
+public class Amount {
     private int money;
 
-    public Money(int money) {
+    public Amount(int money) {
         validate(money);
         this.money = money;
     }
