@@ -10,10 +10,11 @@ public class ErrorMessages {
     public static final String NOT_INTEGER_PRODUCT_AMOUNT = "[ERROR] 상품 가격은 숫자만 입력 가능합니다.";
     public static final String OUT_OF_RANGE_PRODUCT_AMOUNT = "[ERROR] 상품 가격은 100 이상이어야 합니다.";
     public static final String INVALID_UNIT_PRODUCT_AMOUNT = "[ERROR] 상품 가격은 10으로 나누어 떨어져야 합니다.";
-    public static final String NOT_INTEGER_PRODUCT_COUNT = "[ERROR] 상품 수량은 숫자만 입력 가능합니다.";
-    public static final String OUT_OF_RANGE_PRODUCT_COUNT = "[ERROR] 상품 수량은 1개 이상이어야 합니다.";
+    public static final String NOT_INTEGER_PRODUCT_QUANTITY = "[ERROR] 상품 수량은 숫자만 입력 가능합니다.";
+    public static final String OUT_OF_RANGE_PRODUCT_QUANTITY = "[ERROR] 상품 수량은 1개 이상이어야 합니다.";
     public static final String NOT_INTEGER_CONSUMER_MONEY = "[ERROR] 투입 금액은 숫자만 입력 가능합니다.";
     public static final String INVALID_UNIT_CONSUMER_MONEY = "[ERROR] 투입 금액은 10으로 나누어 떨어져야 합니다.";
 
     public static final String NOT_EXIST_PRODUCT = "[ERROR] 존재하지 않는 상품입니다.";
+    public static final String NOT_EXIST_COIN_AMOUNT = "[ERROR] 존재하지 않는 동전 금액입니다.";
 }
