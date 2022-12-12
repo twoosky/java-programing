@@ -12,7 +12,6 @@ import static vendingmachine.utils.ViewMessages.*;
 public class OutputView {
 
     public void printCoin() {
-        System.out.println();
         System.out.println(VENDING_MACHINE_AMOUNT);
         Arrays.stream(Coin.values())
                 .map(coin -> getCoinMessage(coin, coin.getCount()))
@@ -32,8 +31,8 @@ public class OutputView {
     }
 
     public void printMoney(Money money) {
-        System.out.println();
-        System.out.println(format(INPUT_MONEY_FORMAT, money.getMoney()));
+        System.out.println(format(INPUT_MONEY_FORMAT, money.getMoney())
+                .replaceAll(",", ""));
     }
 
     public void printErrorMessage(String message) {
