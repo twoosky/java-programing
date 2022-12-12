@@ -27,7 +27,7 @@ public class VendingMachineController {
     private void initVendingMachine() {
         repeat(vendingMachineService::generateCoin, inputView::readAmount);
         outputView.printCoin();
-        repeat(vendingMachineService::generateProducts, inputView::readProduct);
+        repeat(vendingMachineService::generateProducts, inputView::readProducts);
     }
 
     private void buyProduct() {
