@@ -2,6 +2,7 @@ package vendingmachine.view;
 
 import camp.nextstep.edu.missionutils.Console;
 import vendingmachine.utils.IntegerConvertor;
+import vendingmachine.view.validator.InputProductsValidator;
 
 import static vendingmachine.utils.ErrorMessages.NOT_INTEGER_CONSUMER_MONEY;
 import static vendingmachine.utils.ErrorMessages.NOT_INTEGER_MACHINE_MONEY;
@@ -15,10 +16,12 @@ public class InputView {
         );
     }
 
-    public String readProduct() {
+    public String readProducts() {
         System.out.println();
         System.out.println("상품명과 가격, 수량을 입력해 주세요.");
-        return Console.readLine();
+        String products = Console.readLine();
+        InputProductsValidator.validate(products);
+        return products;
     }
 
     public int readMoney() {

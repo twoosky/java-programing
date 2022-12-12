@@ -7,73 +7,37 @@ import java.util.stream.Collectors;
 import static vendingmachine.utils.ErrorMessages.*;
 
 public class Products {
-    private static final String PRODUCT_INFO_END_FORMAT = "]";
     private static final String PRODUCT_SEPARATOR = ";";
     private static final String PRODUCT_INFO_SEPARATOR = ",";
+    private static final String PRODUCT_INFO_REGEX = "[\\[\\]]";
+    private static final int PRODUCT_NAME_INDEX = 0;
+    private static final int PRODUCT_PRICE_INDEX = 1;
+    private static final int PRODUCT_QUANTITY_INDEX = 2;
 
     private final List<Product> products;
 
     public Products(String products) {
-        validate(products);
         this.products = initProducts(products);
     }
 
     private List<Product> initProducts(String products) {
         return Arrays.stream(products.split(PRODUCT_SEPARATOR))
-                .map(this::toProduct)
+                .map(this::getProduct)
                 .collect(Collectors.toList());
     }
 
-    private Product toProduct(String product) {
-        String[] productInfo = product.replaceAll("[\\[\\]]", "")
+    private Product getProduct(String product) {
+        String[] productInfo = product.replaceAll(PRODUCT_INFO_REGEX, "")
                 .split(PRODUCT_INFO_SEPARATOR);
-        return new Product(Arrays.asList(productInfo));
+        return toProduct(Arrays.asList(productInfo));
     }
 
-    private void validate(String products) {
-        validateProductSeparator(products);
-        validateProductInfoSeparator(products);
-        validateProductInfo(products);
-    }
-
-    private void validateProductSeparator(String products) {
-        if (!isSeparateProduct(products)) {
-            throw new IllegalArgumentException(INVALID_PRODUCT_SEPARATOR);
-        }
-    }
-
-    private boolean isSeparateProduct(String products) {
-        int productCount = countBySeparator(products, PRODUCT_INFO_END_FORMAT);
-        int productSeparatorCount = countBySeparator(products, PRODUCT_SEPARATOR);
-        return (productCount - 1) == productSeparatorCount;
-    }
-
-    private int countBySeparator(String products, String separator) {
-        return (int) products.chars()
-                .filter(ch -> ch == separator.charAt(0))
-                .count();
-    }
-
-    private void validateProductInfoSeparator(String products) {
-        if (!isSeparateProductInfo(products)) {
-            throw new IllegalArgumentException(INVALID_PRODUCT_INFO_SEPARATOR);
-        }
-    }
-
-    private boolean isSeparateProductInfo(String products) {
-        return Arrays.stream(products.split(PRODUCT_SEPARATOR))
-                .allMatch(product -> product.contains(PRODUCT_INFO_SEPARATOR));
-    }
-
-    private void validateProductInfo(String products) {
-        if (!isValidProductInfo(products)) {
-            throw new IllegalArgumentException(INVALID_PRODUCT_INFO);
-        }
-    }
-
-    private boolean isValidProductInfo(String products) {
-        return Arrays.stream(products.split(PRODUCT_SEPARATOR))
-                .allMatch(product -> countBySeparator(product, PRODUCT_INFO_SEPARATOR) == 2);
+    private Product toProduct(List<String> productInfo) {
+        return new Product(
+                productInfo.get(PRODUCT_NAME_INDEX),
+                productInfo.get(PRODUCT_PRICE_INDEX),
+                productInfo.get(PRODUCT_QUANTITY_INDEX)
+        );
     }
 
     public Product getProductByName(String productName) {
