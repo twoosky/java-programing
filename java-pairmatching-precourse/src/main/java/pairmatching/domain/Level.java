@@ -27,4 +27,12 @@ public enum Level {
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(NOT_EXIST_LEVEL));
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public List<Mission> getMissions() {
+        return missions;
+    }
 }

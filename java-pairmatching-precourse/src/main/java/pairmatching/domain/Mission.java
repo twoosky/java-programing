@@ -1,5 +1,9 @@
 package pairmatching.domain;
 
+import java.util.Arrays;
+
+import static pairmatching.utils.ErrorMessages.NOT_EXIST_MISSION;
+
 public enum Mission {
     CAR("자동차경주"),
     LOTTO("로또"),
@@ -14,5 +18,16 @@ public enum Mission {
 
     Mission(String name) {
         this.name = name;
+    }
+
+    public static Mission of(String name) {
+        return Arrays.stream(Mission.values())
+                .filter(mission -> mission.name.equals(name))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(NOT_EXIST_MISSION));
+    }
+
+    public String getName() {
+        return name;
     }
 }

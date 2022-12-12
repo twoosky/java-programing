@@ -19,7 +19,11 @@ public class MissionPairHistory {
                 .anyMatch(key -> key == mission);
     }
 
-    public Map<Mission, Pair> getPairs() {
-        return pairs;
+    public void resetMissionPair() {
+        pairs.clear();
+    }
+
+    public Pair getPairsByMission(Mission mission) {
+        return pairs.get(mission);
     }
 }
