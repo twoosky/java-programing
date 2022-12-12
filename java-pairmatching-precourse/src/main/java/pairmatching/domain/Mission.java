@@ -1,19 +1,20 @@
 package pairmatching.domain;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-
 public enum Mission {
-    LEVEL1(Arrays.asList("자동차 경주", "로또", "숫자야구게임")),
-    LEVEL2(Arrays.asList("장바구니", "결제", "지하철노선도")),
-    LEVEL3(Collections.emptyList()),
-    LEVEL4(Arrays.asList("성능개선", "배포")),
-    LEVEL5(Collections.emptyList());
+    CAR("자동차경주", false),
+    LOTTO("로또", false),
+    BASEBALL("숫자야구게임", false),
+    BUCKET("장바구니", false),
+    PAY("결제", false),
+    SUBWAY("지하철노선도", false),
+    PERFORMANCE("성능개선", false),
+    DEPLOY("배포", false);
 
-    private final List<String> missions;
+    private final String name;
+    private final boolean history;
 
-    Mission(List<String> missions) {
-        this.missions = missions;
+    Mission(String name, boolean history) {
+        this.name = name;
+        this.history = history;
     }
 }
