@@ -10,6 +10,7 @@ public class ReMatching {
 
     public ReMatching(String reMatching) {
         this.reMatching = reMatching;
+        validate(reMatching);
     }
 
     private void validate(String input) {
