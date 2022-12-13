@@ -2,6 +2,7 @@ package pairmatching.domain;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CrewPairHistory {
     private final Crew crew;
@@ -12,12 +13,22 @@ public class CrewPairHistory {
         this.history = new ArrayList<>();
     }
 
-    public void putMatchedPair(Crew crew) {
-        history.add(crew);
+    public void putMatchedPair(List<Crew> pairs) {
+        history.addAll(getPair(pairs));
+    }
+
+    private List<Crew> getPair(List<Crew> pairs) {
+        return pairs.stream()
+             .filter(crew -> !crew.equals(this.crew))
+             .collect(Collectors.toList());
     }
 
     public boolean isMatchedPair(Crew pair) {
         return (crew.getCourse() == pair.getCourse()) && history.contains(pair);
+    }
+
+    public void reset() {
+        history.clear();
     }
 
     public Crew getCrew() {

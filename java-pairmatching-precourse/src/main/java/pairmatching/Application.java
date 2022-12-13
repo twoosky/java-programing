@@ -1,7 +1,14 @@
 package pairmatching;
 
+import pairmatching.controller.PairMatchingController;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO 구현 진행
+        try {
+            PairMatchingController pairMatchingController = new PairMatchingController();
+            pairMatchingController.run();
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }

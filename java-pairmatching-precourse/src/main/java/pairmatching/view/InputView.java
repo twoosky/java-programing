@@ -4,6 +4,8 @@ import camp.nextstep.edu.missionutils.Console;
 import pairmatching.dto.MissionDto;
 import pairmatching.view.validator.InputMissionValidator;
 
+import java.util.Arrays;
+
 import static pairmatching.utils.ViewMessages.*;
 
 public class InputView {
@@ -13,13 +15,13 @@ public class InputView {
     public static final int MISSION_INDEX = 2;
 
 
-    public String readFunction() {
-        System.out.println(MISSION);
+    public String readMenu() {
         return Console.readLine();
     }
 
     public MissionDto readMission() {
-        System.out.println(COURSE);
+        System.out.println(SELECT_MISSION);
+        System.out.println(MISSION_MENU_EX);
         String mission = Console.readLine();
         InputMissionValidator.validate(mission);
         return generateMissionDto(mission);
@@ -32,6 +34,7 @@ public class InputView {
 
     private MissionDto generateMissionDto(String mission) {
         String[] missionInfo = mission.split(MISSION_INFO_SEPARATOR);
+        System.out.println("Arrays.asList(missionInfo = " + Arrays.asList(missionInfo));
         return new MissionDto(
                 missionInfo[COURSE_INDEX],
                 missionInfo[LEVEL_INDEX],

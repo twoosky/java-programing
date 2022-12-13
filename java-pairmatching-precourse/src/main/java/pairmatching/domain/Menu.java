@@ -1,13 +1,14 @@
 package pairmatching.domain;
 
 import java.util.Arrays;
+import java.util.function.Supplier;
 
 import static pairmatching.utils.ErrorMessages.INVALID_MENU_NUMBER;
 
 public enum Menu {
-    CREATE_MATCHING("1"),
-    SELECT_MATCHING("2"),
-    RESET_MATCHING("3"),
+    CREATE("1"),
+    SELECT("2"),
+    RESET("3"),
     QUIT("Q");
 
     private final String type;
@@ -21,5 +22,9 @@ public enum Menu {
                 .filter(menu -> menu.type.equals(type))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(INVALID_MENU_NUMBER));
+    }
+
+    public boolean isQuit() {
+        return this == QUIT;
     }
 }

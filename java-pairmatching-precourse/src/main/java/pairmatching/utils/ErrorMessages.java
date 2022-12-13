@@ -9,4 +9,6 @@ public class ErrorMessages {
     public static final String NOT_EXIST_LEVEL = "[ERROR] 존재하지 않는 레벨입니다.";
     public static final String NOT_EXIST_MISSION = "[ERROR] 존재하지 않는 미션입니다.";
     public static final String INVALID_RE_MATCHING_FLAG = "[ERROR] 네 또는 아니오만 입력 가능합니다.";
+    public static final String NOT_EXIST_CREW = "[ERROR] 존재하지 않는 크루입니다.";
+    public static final String IMPOSSIBLE_PAIR_MATCHING = "[ERROR] 매칭할 수 없습니다.";
 }

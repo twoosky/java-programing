@@ -1,25 +1,27 @@
 package pairmatching.domain;
 
+import java.util.Arrays;
+
 import static pairmatching.utils.ErrorMessages.INVALID_RE_MATCHING_FLAG;
 
-public class ReMatching {
-    public static final String REMATCHING = "네";
-    public static final String NOT_REMATCHING = "아니오";
+public enum ReMatching {
+    REMATCHING("네"),
+    NOT_REMATCHING("아니오");
 
-    private final String reMatching;
+    private final String command;
 
-    public ReMatching(String reMatching) {
-        this.reMatching = reMatching;
-        validate(reMatching);
+    ReMatching(String command) {
+        this.command = command;
     }
 
-    private void validate(String input) {
-        if(!isValidReMatchingFlag(input)) {
-            throw new IllegalArgumentException(INVALID_RE_MATCHING_FLAG);
-        }
+    public static ReMatching of(String command) {
+        return Arrays.stream(ReMatching.values())
+                .filter(reMatching -> reMatching.command.equals(command))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(INVALID_RE_MATCHING_FLAG));
     }
 
-    private boolean isValidReMatchingFlag(String input) {
-        return input.equals(REMATCHING) || input.equals(NOT_REMATCHING);
+    public boolean isReMatching() {
+        return this == REMATCHING;
     }
 }
