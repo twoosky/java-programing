@@ -1,6 +1,11 @@
 package pairmatching.service;
 
 import pairmatching.domain.*;
+import pairmatching.domain.enums.Course;
+import pairmatching.domain.enums.Level;
+import pairmatching.domain.enums.Mission;
+import pairmatching.domain.enums.ReMatching;
+import pairmatching.domain.history.MissionPairHistories;
 import pairmatching.dto.MissionDto;
 import pairmatching.dto.MissionInfoDto;
 import pairmatching.dto.PairMatchingDto;

@@ -1,4 +1,6 @@
-package pairmatching.domain;
+package pairmatching.domain.history;
+
+import pairmatching.domain.Crew;
 
 import java.util.ArrayList;
 import java.util.List;

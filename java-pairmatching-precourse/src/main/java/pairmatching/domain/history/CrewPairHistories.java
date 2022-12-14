@@ -1,4 +1,8 @@
-package pairmatching.domain;
+package pairmatching.domain.history;
+
+import pairmatching.domain.enums.Course;
+import pairmatching.domain.Crew;
+import pairmatching.domain.Crews;
 
 import java.util.Arrays;
 import java.util.Collection;

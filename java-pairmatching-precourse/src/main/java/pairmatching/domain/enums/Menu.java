@@ -1,7 +1,6 @@
-package pairmatching.domain;
+package pairmatching.domain.enums;
 
 import java.util.Arrays;
-import java.util.function.Supplier;
 
 import static pairmatching.utils.ErrorMessages.INVALID_MENU_NUMBER;
 

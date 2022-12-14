@@ -1,5 +1,7 @@
 package pairmatching.domain;
 
+import pairmatching.domain.enums.Course;
+import pairmatching.domain.history.CrewPairHistories;
 import pairmatching.utils.PairMatchingRule;
 
 import java.util.stream.IntStream;

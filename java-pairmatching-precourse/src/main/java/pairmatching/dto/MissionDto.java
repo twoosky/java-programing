@@ -1,7 +1,7 @@
 package pairmatching.dto;
 
-import pairmatching.domain.Course;
-import pairmatching.domain.Mission;
+import pairmatching.domain.enums.Course;
+import pairmatching.domain.enums.Mission;
 
 public class MissionDto {
     private final Course course;

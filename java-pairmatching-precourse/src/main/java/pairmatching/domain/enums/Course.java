@@ -1,4 +1,4 @@
-package pairmatching.domain;
+package pairmatching.domain.enums;
 
 import java.util.Arrays;
 
