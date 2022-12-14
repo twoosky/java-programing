@@ -1,8 +1,8 @@
 package pairmatching.controller;
 
 import pairmatching.domain.Menu;
-import pairmatching.domain.Mission;
 import pairmatching.domain.ReMatching;
+import pairmatching.dto.MissionDto;
 import pairmatching.dto.PairMatchingDto;
 import pairmatching.service.PairMatchingService;
 import pairmatching.view.InputView;
@@ -47,36 +47,36 @@ public class PairMatchingController {
     }
 
     private void matchPair() {
-        Mission mission = repeat(pairMatchingService::generateMission, inputView::readMission);
-        match(mission);
+        MissionDto missionDto = repeat(pairMatchingService::generateMission, inputView::readMission);
+        checkMatched(missionDto);
     }
 
-    private void match(Mission mission) {
-        PairMatchingDto dto = pairMatchingService.match(mission);
+    private void match(MissionDto missionDto) {
+        PairMatchingDto dto = pairMatchingService.match(missionDto);
         outputView.printPairMatchingResult(dto);
+    }
+
+    private void checkMatched(MissionDto dto) {
+        if (pairMatchingService.isMatched(dto)) {
+            ReMatch(dto);
+            return;
+        }
+        match(dto);
+    }
+
+    private void ReMatch(MissionDto dto) {
+        ReMatching reMatching = repeat(ReMatching::of, inputView::readReMatching);
+        if (pairMatchingService.isRematching(reMatching, dto)) {
+            match(dto);
+            return;
+        }
+        matchPair();
     }
 
     private void getPair() {
-        Mission mission = repeat(pairMatchingService::generateMission, inputView::readMission);
-        checkMatched(mission);
-        PairMatchingDto dto = pairMatchingService.getPairMatchingResult(mission);
-        outputView.printPairMatchingResult(dto);
-    }
-
-    private void checkMatched(Mission mission) {
-        if (pairMatchingService.isMatched(mission)) {
-            ReMatch(mission);
-        }
-    }
-
-    private void ReMatch(Mission mission) {
-        ReMatching reMatching = repeat(ReMatching::of, inputView::readReMatching);
-        if (pairMatchingService.isRematching(reMatching)) {
-            match(mission);
-        }
-        if (!pairMatchingService.isRematching(reMatching)) {
-            getPair();
-        }
+        MissionDto missionDto = repeat(pairMatchingService::generateMission, inputView::readMission);
+        PairMatchingDto pairMatchingDto = pairMatchingService.getPairMatchingResult(missionDto);
+        outputView.printPairMatchingResult(pairMatchingDto);
     }
 
     private void resetPair() {

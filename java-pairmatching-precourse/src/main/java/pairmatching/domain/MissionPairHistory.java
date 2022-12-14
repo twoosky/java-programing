@@ -1,29 +1,21 @@
 package pairmatching.domain;
 
-import java.util.EnumMap;
-import java.util.Map;
-
 public class MissionPairHistory {
-    private final Map<Mission, Pair> pairs;
+    private final Course course;
+    private final Mission mission;
+    private final Pair pair;
 
-    public MissionPairHistory() {
-        this.pairs = new EnumMap<>(Mission.class);
+    public MissionPairHistory(Course course, Mission mission, Pair pair) {
+        this.course = course;
+        this.mission = mission;
+        this.pair = pair;
     }
 
-    public void putMissionPair(Mission mission, Pair pair) {
-        pairs.put(mission, pair);
+    public boolean isEqualCourseAndMission(Course course, Mission mission) {
+        return (this.course == course) && (this.mission == mission);
     }
 
-    public boolean isExistPair(Mission mission) {
-        return pairs.keySet().stream()
-                .anyMatch(key -> key == mission);
-    }
-
-    public void resetMissionPair() {
-        pairs.clear();
-    }
-
-    public Pair getPairsByMission(Mission mission) {
-        return pairs.get(mission);
+    public Pair getPair() {
+        return pair;
     }
 }

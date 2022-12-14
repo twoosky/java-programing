@@ -1,60 +1,45 @@
 package pairmatching.domain;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import static pairmatching.utils.ErrorMessages.NOT_EXIST_CREW;
 import static pairmatching.utils.FileReader.*;
 
 public class Crews {
-    private final List<Crew> crews;
-    private final List<CrewPairHistory> crewPairHistories;
+    private final Map<Course, List<Crew>> crews;
 
     public Crews() {
-        this.crews = new ArrayList<>();
-        this.crewPairHistories = initCrewPairHistories();
-        initCrews();
+        this.crews = initCrews();
     }
 
-    private void initCrews() {
-        addCrew(Course.FRONTEND, read(FRONT_CREWS_FILE_PATH));
-        addCrew(Course.BACKEND, read(BACKEND_CREWS_FILE_PATH));
+    private Map<Course, List<Crew>> initCrews() {
+        return Arrays.stream(Course.values())
+                .collect(Collectors.toMap(course -> course, this::addCrew));
     }
 
-    private List<CrewPairHistory> initCrewPairHistories() {
-        return crews.stream()
-                .map(CrewPairHistory::new)
+    private List<Crew> addCrew(Course course) {
+        return read(course).stream()
+                .map(name -> new Crew(course, name))
                 .collect(Collectors.toList());
     }
 
-    private void addCrew(Course course, List<String> names) {
-        names.forEach(name -> crews.add(new Crew(course, name)));
+    public List<String> getCrewsName(Course course) {
+        return getCrewsByCourse(course).stream()
+                .map(Crew::getName)
+                .collect(Collectors.toList());
     }
 
-    public boolean isMatchedPair(Crew crew) {
-        CrewPairHistory crewPairHistory = getCrewPairHistory(crew);
-        return crewPairHistory.isMatchedPair(crew);
+    public List<Crew> getCrewsByCourse(Course course) {
+        return crews.get(course);
     }
 
-    private CrewPairHistory getCrewPairHistory(Crew crew) {
-        return crewPairHistories.stream()
-                .filter(history-> history.getCrew().equals(crew))
+    public Crew getCrewByName(Course course, String name) {
+        return getCrewsByCourse(course).stream()
+                .filter(crew -> crew.isEqualName(name))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(NOT_EXIST_CREW));
-    }
-
-    public void putCrewPairHistory(List<Crew> pair) {
-        pair.stream()
-                .map(this::getCrewPairHistory)
-                .forEach(history -> history.putMatchedPair(pair));
-    }
-
-    public void resetCrewPairHistory() {
-        crewPairHistories.forEach(CrewPairHistory::reset);
-    }
-
-    public List<Crew> getCrews() {
-        return crews;
     }
 }

@@ -1,6 +1,9 @@
 package pairmatching.domain;
 
+import java.util.List;
 import java.util.Objects;
+
+import static pairmatching.utils.ErrorMessages.NOT_EXIST_CREW;
 
 public class Crew {
     private Course course;
@@ -9,6 +12,10 @@ public class Crew {
     public Crew(Course course, String name) {
         this.course = course;
         this.name = name;
+    }
+
+    public boolean isEqualName(String name) {
+        return this.name.equals(name);
     }
 
     public Course getCourse() {

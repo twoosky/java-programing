@@ -1,5 +1,7 @@
 package pairmatching.utils;
 
+import pairmatching.domain.Course;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -14,10 +16,10 @@ public class FileReader {
 
     private FileReader() {}
 
-    public static List<String> read(String path) {
+    public static List<String> read(Course course) {
         try {
             List<String> names = new ArrayList<>();
-            Scanner scanner = new Scanner(new File(path));
+            Scanner scanner = new Scanner(new File(getPath(course)));
             while (scanner.hasNextLine()) {
                 names.add(scanner.nextLine());
             }
@@ -25,5 +27,12 @@ public class FileReader {
         } catch (FileNotFoundException e) {
             throw new IllegalArgumentException(NOT_FOUND_FILE);
         }
+    }
+
+    private static String getPath(Course course) {
+        if (course == Course.FRONTEND) {
+            return FRONT_CREWS_FILE_PATH;
+        }
+        return BACKEND_CREWS_FILE_PATH;
     }
 }

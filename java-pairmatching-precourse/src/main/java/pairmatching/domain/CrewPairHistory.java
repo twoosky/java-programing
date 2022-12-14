@@ -23,7 +23,13 @@ public class CrewPairHistory {
              .collect(Collectors.toList());
     }
 
-    public boolean isMatchedPair(Crew pair) {
+    public boolean isMatched(List<Crew> crews) {
+        return crews.stream()
+                .filter(crew -> !this.crew.equals(crew))
+                .anyMatch(this::isMatchedPair);
+    }
+
+    private boolean isMatchedPair(Crew pair) {
         return (crew.getCourse() == pair.getCourse()) && history.contains(pair);
     }
 

@@ -1,7 +1,7 @@
 package pairmatching.view;
 
 import camp.nextstep.edu.missionutils.Console;
-import pairmatching.dto.MissionDto;
+import pairmatching.dto.MissionInfoDto;
 import pairmatching.view.validator.InputMissionValidator;
 
 import java.util.Arrays;
@@ -19,7 +19,7 @@ public class InputView {
         return Console.readLine();
     }
 
-    public MissionDto readMission() {
+    public MissionInfoDto readMission() {
         System.out.println(SELECT_MISSION);
         System.out.println(MISSION_MENU_EX);
         String mission = Console.readLine();
@@ -32,10 +32,10 @@ public class InputView {
         return Console.readLine();
     }
 
-    private MissionDto generateMissionDto(String mission) {
+    private MissionInfoDto generateMissionDto(String mission) {
         String[] missionInfo = mission.split(MISSION_INFO_SEPARATOR);
         System.out.println("Arrays.asList(missionInfo = " + Arrays.asList(missionInfo));
-        return new MissionDto(
+        return new MissionInfoDto(
                 missionInfo[COURSE_INDEX],
                 missionInfo[LEVEL_INDEX],
                 missionInfo[MISSION_INDEX]

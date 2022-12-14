@@ -5,10 +5,10 @@ import pairmatching.domain.Crew;
 
 import java.util.List;
 
-public class PairMatchingRandom implements PairMatchingRule<Crew> {
+public class PairMatchingRandom implements PairMatchingRule<String> {
 
     @Override
-    public List<Crew> match(List<Crew> crews) {
+    public List<String> match(List<String> crews) {
         return Randoms.shuffle(crews);
     }
 }

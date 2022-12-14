@@ -1,48 +1,46 @@
 package pairmatching.domain;
 
-import java.util.List;
+import pairmatching.utils.PairMatchingRule;
+
 import java.util.stream.IntStream;
 
 import static pairmatching.utils.ErrorMessages.IMPOSSIBLE_PAIR_MATCHING;
 
 public class PairMatching {
     private final Crews crews;
+    private final CrewPairHistories crewPairHistories;
     private final Matching matching;
 
-    public PairMatching(Crews crews, Matching matching) {
-        this.crews = crews;
-        this.matching = matching;
+    public PairMatching(PairMatchingRule<String> pairMatchingRule) {
+        this.crews = new Crews();
+        this.crewPairHistories = new CrewPairHistories(crews);
+        this.matching = new Matching(pairMatchingRule);
     }
 
-    public Pair match() {
-        Pair pair = matchByPair();
+    public Pair match(Course course) {
+        Pair pair = matchByPair(course);
         putCrewPairHistory(pair);
         return pair;
     }
 
-    private Pair matchByPair() {
+    private Pair matchByPair(Course course) {
         return IntStream.range(0, 3)
-                .mapToObj(i -> matching.match(crews))
-                .filter(this::isMatched)
+                .mapToObj(i -> matching.match(course, crews))
+                .filter(this::isNotMatched)
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(IMPOSSIBLE_PAIR_MATCHING));
     }
 
-    private boolean isMatched(Pair pair) {
-        return pair.getPair().stream()
-                .anyMatch(this::isMatchedByPair);
-    }
-
-    private boolean isMatchedByPair(List<Crew> pair) {
-        return pair.stream()
-                .allMatch(crews::isMatchedPair);
+    private boolean isNotMatched(Pair pair) {
+        return !pair.getPair().stream()
+                .allMatch(crewPairHistories::isMatchedPair);
     }
 
     private void putCrewPairHistory(Pair pair) {
-        pair.getPair().forEach(crews::putCrewPairHistory);
+        pair.getPair().forEach(crewPairHistories::putCrewPairHistory);
     }
 
     public void reset() {
-        crews.resetCrewPairHistory();
+        crewPairHistories.resetCrewPairHistory();
     }
 }

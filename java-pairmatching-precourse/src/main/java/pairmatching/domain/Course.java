@@ -14,8 +14,8 @@ public enum Course {
         this.name = name;
     }
 
-    public static void validate(String name) {
-        Arrays.stream(Course.values())
+    public static Course of(String name) {
+        return Arrays.stream(Course.values())
                 .filter(course -> course.name.equals(name))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(NOT_EXIST_COURSE));
