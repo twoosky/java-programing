@@ -34,7 +34,6 @@ public class InputView {
 
     private MissionInfoDto generateMissionDto(String mission) {
         String[] missionInfo = mission.split(MISSION_INFO_SEPARATOR);
-        System.out.println("Arrays.asList(missionInfo = " + Arrays.asList(missionInfo));
         return new MissionInfoDto(
                 missionInfo[COURSE_INDEX],
                 missionInfo[LEVEL_INDEX],

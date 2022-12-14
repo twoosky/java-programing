@@ -39,7 +39,6 @@ public class Matching {
     }
 
     private List<Crew> generatePair(int index, List<Crew> crews) {
-        System.out.println("crews = " + crews);
         if (isLastPair(index, crews)) {
             return Arrays.asList(crews.get(index++), crews.get(index++), crews.get(index));
         }
