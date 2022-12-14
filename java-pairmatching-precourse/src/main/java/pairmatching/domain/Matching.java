@@ -31,13 +31,14 @@ public class Matching {
     }
 
     private List<Crew> generatePair(int index, List<Crew> crews) {
+        System.out.println("index = " + index);
         if (isLastPair(index, crews)) {
-            return Arrays.asList(crews.get(index++), crews.get(index++), crews.get(index));
+            return Arrays.asList(crews.get(index), crews.get(index + 1), crews.get(index + 2));
         }
-        return Arrays.asList(crews.get(index++), crews.get(index));
+        return Arrays.asList(crews.get(index), crews.get(index + 1));
     }
 
     private boolean isLastPair(int index, List<Crew> crews) {
-        return ((crews.size() - 1) - index) == 3;
+        return (crews.size() - index) == 3;
     }
 }

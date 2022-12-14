@@ -1,7 +1,6 @@
 package pairmatching.domain;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -43,6 +42,16 @@ public class Crews {
                 .filter(history-> history.getCrew().equals(crew))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(NOT_EXIST_CREW));
+    }
+
+    public void putCrewPairHistory(List<Crew> pair) {
+        pair.stream()
+                .map(this::getCrewPairHistory)
+                .forEach(history -> history.putMatchedPair(pair));
+    }
+
+    public void resetCrewPairHistory() {
+        crewPairHistories.forEach(CrewPairHistory::reset);
     }
 
     public List<Crew> getCrews() {

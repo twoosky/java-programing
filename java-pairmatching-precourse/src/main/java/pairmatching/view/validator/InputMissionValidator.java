@@ -24,6 +24,6 @@ public class InputMissionValidator {
     }
 
     private static boolean isValidMissionInfo(String mission) {
-        return mission.split(SEPARATOR).length != 3;
+        return mission.split(SEPARATOR).length == 3;
     }
 }

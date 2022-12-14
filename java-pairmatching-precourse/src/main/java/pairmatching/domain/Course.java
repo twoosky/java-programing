@@ -8,15 +8,15 @@ public enum Course {
     BACKEND("백엔드"),
     FRONTEND("프론트엔드");
 
-    private String name;
+    private final String name;
 
     Course(String name) {
         this.name = name;
     }
 
-    public static Course of(String name) {
-        return Arrays.stream(Course.values())
-                .filter(course ->  course.name == name)
+    public static void validate(String name) {
+        Arrays.stream(Course.values())
+                .filter(course -> course.name.equals(name))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(NOT_EXIST_COURSE));
     }

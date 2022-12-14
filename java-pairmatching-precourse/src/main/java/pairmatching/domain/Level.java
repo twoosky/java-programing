@@ -21,8 +21,8 @@ public enum Level {
         this.missions = missions;
     }
 
-    public static Level of(String name) {
-        return Arrays.stream(Level.values())
+    public static void validate(String name) {
+        Arrays.stream(Level.values())
                 .filter(level -> level.name.equals(name))
                 .findFirst()
                 .orElseThrow(() -> new IllegalArgumentException(NOT_EXIST_LEVEL));
