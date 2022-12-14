@@ -1,7 +1,5 @@
 package pairmatching.domain;
 
-import pairmatching.domain.enums.Course;
-
 import java.util.Objects;
 
 public class Crew {

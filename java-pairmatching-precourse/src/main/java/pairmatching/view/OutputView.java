@@ -1,10 +1,10 @@
 package pairmatching.view;
 
 
-import pairmatching.domain.enums.Course;
+import pairmatching.domain.Course;
 import pairmatching.domain.Crew;
-import pairmatching.domain.enums.Level;
-import pairmatching.domain.enums.Mission;
+import pairmatching.domain.Level;
+import pairmatching.domain.Mission;
 import pairmatching.dto.PairMatchingDto;
 
 import java.util.Arrays;

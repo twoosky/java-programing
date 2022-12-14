@@ -1,6 +1,6 @@
 package pairmatching.utils;
 
-import pairmatching.domain.enums.Course;
+import pairmatching.domain.Course;
 
 import java.io.File;
 import java.io.FileNotFoundException;

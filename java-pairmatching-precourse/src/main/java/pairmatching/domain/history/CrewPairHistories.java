@@ -1,6 +1,6 @@
 package pairmatching.domain.history;
 
-import pairmatching.domain.enums.Course;
+import pairmatching.domain.Course;
 import pairmatching.domain.Crew;
 import pairmatching.domain.Crews;
 

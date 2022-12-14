@@ -1,7 +1,7 @@
 package pairmatching.domain.history;
 
-import pairmatching.domain.enums.Course;
-import pairmatching.domain.enums.Mission;
+import pairmatching.domain.Course;
+import pairmatching.domain.Mission;
 import pairmatching.domain.Pair;
 
 import java.util.ArrayList;

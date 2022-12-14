@@ -1,7 +1,7 @@
 package pairmatching.controller;
 
-import pairmatching.domain.enums.Menu;
-import pairmatching.domain.enums.ReMatching;
+import pairmatching.domain.Menu;
+import pairmatching.domain.ReMatching;
 import pairmatching.dto.MissionDto;
 import pairmatching.dto.PairMatchingDto;
 import pairmatching.service.PairMatchingService;

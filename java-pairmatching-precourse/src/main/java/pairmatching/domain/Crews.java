@@ -1,7 +1,5 @@
 package pairmatching.domain;
 
-import pairmatching.domain.enums.Course;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;

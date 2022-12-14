@@ -1,6 +1,5 @@
 package pairmatching.domain;
 
-import pairmatching.domain.enums.Course;
 import pairmatching.utils.PairMatchingRule;
 
 import java.util.Arrays;
