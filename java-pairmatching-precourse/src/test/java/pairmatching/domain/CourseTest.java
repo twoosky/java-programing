@@ -17,7 +17,7 @@ import static pairmatching.utils.ErrorMessages.NOT_EXIST_COURSE;
 public class CourseTest {
 
     @Nested
-    @DisplayName("of 메소드는")
+    @DisplayName("of 메서드는")
     class Describe_of {
         @Nested
         @TestInstance(PER_CLASS)
